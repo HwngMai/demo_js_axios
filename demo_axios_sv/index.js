@@ -1,4 +1,5 @@
 const BASE_URL = "https://62db6ca5e56f6d82a772852f.mockapi.io";
+//**FUNCTION lấy dssv */
 function getDSSV() {
   loadingOn();
   axios({
@@ -15,6 +16,24 @@ function getDSSV() {
       console.log(err);
     });
 }
+//**FUNCTION lấy thông tin sv */
+function getSV(id) {
+  loadingOn();
+  axios({
+    url: `${BASE_URL}/sv:${id}`,
+    method: "GET",
+  })
+    .then(function (res) {
+      loadingOff();
+      console.log(res);
+      renderDSSV(res.data);
+    })
+    .catch(function (err) {
+      loadingOff();
+      console.log(err);
+    });
+}
+//
 getDSSV();
 function xoaSV(id) {
   loadingOn();
@@ -55,3 +74,5 @@ function themSV() {
       console.log(err);
     });
 }
+//**FUNCTION sửa sinh viên */
+function suaSV() {}

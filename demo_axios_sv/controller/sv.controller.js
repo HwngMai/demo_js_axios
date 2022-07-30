@@ -1,14 +1,15 @@
 renderDSSV = function (dssv) {
   var contentHTML = "";
   dssv.forEach((sv) => {
+    let diemTB = (sv.math * 1 + sv.physics * 1 + sv.chemistry * 1) / 3;
     var contentTr = `<tr>
         <td>${sv.code}</td>
         <td>${sv.name}</td>
         <td>${sv.email}</td>
-        <td>0</td>
+        <td>${diemTB}</td>
         <td> 
         <button onclick="xoaSV('${sv.id}')" class="btn btn-danger"> Xóa </button>
-        <button class="btn btn-warning"> Sửa </button>
+        <button onclick="suaSV('${sv.id}')" class="btn btn-warning"> Sửa </button>
         </td>
         </tr>`;
     contentHTML += contentTr;
@@ -30,8 +31,17 @@ function layThongTinTuForm() {
   const email = document.getElementById("txtEmail").value;
   const password = document.getElementById("txtPass").value;
   const math = document.getElementById("txtDiemToan").value;
-  const physic = document.getElementById("txtDiemLy").value;
+  const physics = document.getElementById("txtDiemLy").value;
   const chemistry = document.getElementById("txtDiemHoa").value;
   //đưa về 1 mảng mới theo cấu tạo của model SinhVien từ model.js
-  return new SinhVien(name, code, email, password, math, physic, chemistry);
+  return new SinhVien(name, code, email, password, math, physics, chemistry);
+}
+//**FUNCTION tìm kiếm vị trí */
+function timKiemViTri(id){
+
+}
+//**FUNCTION show thông tin từ id lên form */
+function showThongTin(id){
+  
+
 }
