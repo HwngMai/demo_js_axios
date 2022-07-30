@@ -54,3 +54,17 @@ let renderSV = function (sv) {
   document.getElementById("txtDiemLy").value = sv.physics;
   document.getElementById("txtDiemHoa").value = sv.chemistry;
 };
+//**FUNCTION reset input */
+
+function resetThongTin() {
+  document.getElementById("txtTenSV").value = "";
+  document.getElementById("txtMaSV").value = "";
+  document.getElementById("txtEmail").value = "";
+  document.getElementById("txtPass").value = "";
+  document.getElementById("txtDiemToan").value = "";
+  document.getElementById("txtDiemLy").value = "";
+  document.getElementById("txtDiemHoa").value = "";
+  togDisable("btnCapNhat");
+  togEnable("txtMaSV");
+  togEnable("btnThemSV");
+}
