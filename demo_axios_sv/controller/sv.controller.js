@@ -23,6 +23,13 @@ function loadingOn() {
 function loadingOff() {
   document.getElementById("loading").style.display = "none";
 }
+// FUNCTION disable ô input và btn
+function togDisable(id) {
+  document.getElementById(id).disabled = true;
+}
+function togEnable(id) {
+  document.getElementById(id).disabled = false;
+}
 //**FUNCTION lấy thông tin từ form */
 function layThongTinTuForm() {
   // lấy các giá trị từ input người dùng
@@ -36,12 +43,14 @@ function layThongTinTuForm() {
   //đưa về 1 mảng mới theo cấu tạo của model SinhVien từ model.js
   return new SinhVien(name, code, email, password, math, physics, chemistry);
 }
-//**FUNCTION tìm kiếm vị trí */
-function timKiemViTri(id){
 
-}
 //**FUNCTION show thông tin từ id lên form */
-function showThongTin(id){
-  
-
-}
+let renderSV = function (sv) {
+  document.getElementById("txtTenSV").value = sv.name;
+  document.getElementById("txtMaSV").value = sv.code;
+  document.getElementById("txtEmail").value = sv.email;
+  document.getElementById("txtPass").value = sv.password;
+  document.getElementById("txtDiemToan").value = sv.math;
+  document.getElementById("txtDiemLy").value = sv.physics;
+  document.getElementById("txtDiemHoa").value = sv.chemistry;
+};
