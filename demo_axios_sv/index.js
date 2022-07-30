@@ -58,7 +58,20 @@ function themSV() {
       console.log(err);
     });
 }
-//**FUNCTION lấy thông tin sv */
+//Tạo biến svEdit
+//**FUNCTION sửa sinh viên */
+function suaSV(id) {
+  //Disable thêm sv và ô input mã sv
+  togDisable("txtMaSV");
+  togDisable("btnThemSV");
+  //Enable ô sửa
+  togEnable("btnCapNhat");
+  //Lấy thông tin sv
+  getSV(id);
+}
+// Tạo biến chứa index cần edit
+let indexEdit = "";
+//**FUNCTION lấy thông tin sv và show lên form */
 function getSV(id) {
   //Bật loading
   loadingOn();
@@ -72,28 +85,26 @@ function getSV(id) {
       console.log(res);
       //RenderSV lên form
       renderSV(res.data);
+      svEdit = res.data;
+      indexEdit = svEdit.id;
+      console.log("indexEdit: ", indexEdit);
+      console.log("svEdit: ", svEdit);
     })
     .catch(function (err) {
       loadingOff();
       console.log(err);
     });
 }
-//**FUNCTION sửa sinh viên */
-function suaSV(id) {
-  //Disable thêm sv và ô input mã sv
-  togDisable("txtMaSV");
-  togDisable("btnThemSV");
-  //Enable ô sửa
-  togEnable("btnCapNhat");
-  //show info sv
-  getSV(id);
-}
 //**FUNCTION cập nhật */
+
 function capNhatSV() {
-  let id = document.getElementById("txtMaSV").value;
+  console.log("indexEdit: ", indexEdit);
+  newSV = layThongTinTuForm();
+  //Lấy thông tin index sv
   axios({
-    url: `${BASE_URL}/sv/${id}`,
+    url: `${BASE_URL}/sv/${indexEdit}`,
     method: "PUT",
+    data: newSV,
   })
     .then(function (res) {
       loadingOff();
