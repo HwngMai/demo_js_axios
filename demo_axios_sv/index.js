@@ -115,6 +115,7 @@ function capNhatSV() {
       togEnable("btnThemSV");
       //Enable ô sửa
       togDisable("btnCapNhat");
+      resetThongTin();
     })
     .catch(function (err) {
       loadingOff();
