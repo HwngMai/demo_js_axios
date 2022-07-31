@@ -30,6 +30,7 @@ function togDisable(id) {
 function togEnable(id) {
   document.getElementById(id).disabled = false;
 }
+
 //**FUNCTION lấy thông tin từ form */
 function layThongTinTuForm() {
   // lấy các giá trị từ input người dùng
@@ -54,8 +55,8 @@ let renderSV = function (sv) {
   document.getElementById("txtDiemLy").value = sv.physics;
   document.getElementById("txtDiemHoa").value = sv.chemistry;
 };
-//**FUNCTION reset input */
 
+//**FUNCTION reset input */
 function resetThongTin() {
   document.getElementById("txtTenSV").value = "";
   document.getElementById("txtMaSV").value = "";
@@ -68,3 +69,15 @@ function resetThongTin() {
   togEnable("txtMaSV");
   togEnable("btnThemSV");
 }
+function resetInput(id) {
+  document.getElementById(id).value = "";
+}
+//**FUNCTION tìm kiếm id theo tên trong mảng trả về id */
+searchNameForId = function (dssv, nameSearch) {
+  for (i = 0; i < dssv.length; i++) {
+    if (nameSearch == dssv[i].name) {
+      return dssv[i].id;
+    }
+  }
+  return -1;
+};

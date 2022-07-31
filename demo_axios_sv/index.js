@@ -69,7 +69,7 @@ function suaSV(id) {
   //Lấy thông tin sv
   getSV(id);
 }
-// Tạo biến chứa index cần edit
+// Tạo biến chứa index cần tìm để edit
 let indexEdit = "";
 //**FUNCTION lấy thông tin sv và show lên form */
 function getSV(id) {
@@ -121,3 +121,40 @@ function capNhatSV() {
       console.log("err: ", err);
     });
 }
+//**FUNCTION tìm kiếm sinh viên */
+function searchSV() {
+  loadingOn();
+  axios({
+    url: `${BASE_URL}/sv`,
+    method: "GET",
+  })
+    .then(function (res) {
+      //Tắt loading
+      loadingOff();
+      console.log(res);
+      // Tạo biến chứa input - tên cần tìm
+      let nameSearch = document.getElementById("txtSearch").value;
+      // Tìm index trong mảng theo tên
+      let indexSearch = searchNameForId(res.data, nameSearch);
+      //Show thông tin lên form
+      if (indexSearch != -1) {
+        getSV(indexSearch);
+        togDisable("txtMaSV");
+        togDisable("btnThemSV");
+        togEnable("btnCapNhat");
+        resetInput("txtSearch");
+      } else {
+        alert(" Không tìm thấy");
+        resetThongTin();
+      }
+    })
+    .catch(function (err) {
+      loadingOff();
+      console.log(err);
+    });
+}
+// 1. get toàn bộ dssv
+// 2. tìm sv.name = input
+// 3. trả về sv.id = indexEdit
+// 4. show thông tin sv[indexEdit] lên form
+// 5. Cập nhật sv[indexEdit]
